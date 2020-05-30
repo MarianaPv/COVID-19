@@ -3,6 +3,8 @@ import './styles.css'
 import Form from './Components/HomePage/index'
 import Register from './Components/Register/Register'
 import Home from './Components/Home/Home'
+import RegistroC from './Components/Casos/RegistroC'
+import Casos from './Components/Casos/Main'
 import { CssBaseline, CircularProgress } from '@material-ui/core'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import firebase from './firebase'
@@ -34,6 +36,8 @@ function App() {
         <Route exact path="/" component={Form} />
         <Route exact path="/register" component={Register} />
 		<Route exact path="/home" component={Home} />
+		<Route exact path="/casos" component={Casos} />
+		<Route exact path="/registro-casos" component={RegistroC} />
 				</Switch>
 			</Router>
       </div>

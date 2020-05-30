@@ -37,9 +37,10 @@ class Firebase {
 	async register(name, email, password) {
 		await this.auth.createUserWithEmailAndPassword(email, password)
 		let resumen2= {
-			"usuario":name,
+			"nombre":name,
 			"correoElectronico" :email,
 			"contraseña" :password
+
 		}
 
 		let messageRef = firebase.database().ref('usuarios')
@@ -59,6 +60,18 @@ class Firebase {
 		return this.auth.currentUser && this.auth.currentUser.displayName
 	}
 
+    datosDB(nombre, apellido, usuario,email, cedula,password) {
+        app.database()
+            .ref("usuarios/" + email.split(".")[0])
+            .update({
+                nombre: nombre,
+                apellido: apellido,
+                usuario: usuario,
+                email: email,
+                cedula: cedula,
+                contraseña: password
+            });
+    }
 
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../Routes/Routes";
 import { withRouter } from "react-router-dom";
@@ -9,10 +9,11 @@ function Navigation(props) {
     props.history.replace("/"); //Irse a página de login al hacer logout
   };
 
+
   return (
     <div className="bodyy">
       <section>
-        <header>
+        <header >
           <div className="navBox">
             <ul className="extra" >
               <li>
@@ -20,7 +21,15 @@ function Navigation(props) {
                 
               </li>
               <li>
-                <Link to={ROUTES.HOME}>ESTADÍSTICAS</Link>
+                <Link to={ROUTES.CASOS}>CASOS</Link>
+                
+              </li>
+              <li>
+                <Link to={ROUTES.HOME}>MAPA DE CASOS</Link>
+                
+              </li>
+              <li>
+                <Link to={ROUTES.HOME}>BÚSQUEDA DE CASOS</Link>
                 
               </li>
 

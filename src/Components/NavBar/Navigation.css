@@ -30,11 +30,13 @@
   ul {
     position: relative;
     margin-left: 2vw;
-    margin-top: 0vh;
+    
     padding: 0;
     display: flex;
     float: left;
     transition: 0.5s;
+    height: 13vh;
+    
   }
   
   ul li {
@@ -44,18 +46,21 @@
   ul li a {
     position: relative;
     display: block;
-    padding: 1.8vh 2.2vw;
-    margin: 3.2vh 0;
+    padding:  2.2vw;
     text-transform: uppercase;
     text-decoration: none;
     color: rgb(215, 217, 221);
     transition: 0.5s;
+    height: 100%;
   }
   ul li a:hover {
     color: #fff;
     
   }
-  
+  ul li a:focus {
+    background-color:rgb(190, 207, 190);
+    color: #0a4e53;
+  }
   .logout {
     height: 13vh;
     width: 9vw;
