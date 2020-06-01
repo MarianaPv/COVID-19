@@ -13,10 +13,10 @@ var firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/database');
 
-function RegistroC (options,index,toggleOPTIONS,props){
+function RegisterBox (){
 
-
-
+    const [isRegistroOpen, setIsRegistroOpen] = useState(true)
+    const [isGestionOpen, setIsGestionOpen] = useState(false)
     const [nombreC, setNombreC] = useState('');
     const [apellidoC, setApellidoC] = useState('');
     const [cedulaC, setCedulaC] = useState('');
@@ -26,7 +26,9 @@ function RegistroC (options,index,toggleOPTIONS,props){
     const [trabajoC, setTrabajoC] = useState('');
     const [examenC, setExamenC] = useState('');
     const [fechaExamenC, setFechaExamenC] = useState('');
-    const [idC, setIdC] = useState('');
+    const [idC, setIdC] = useState(1);
+    setIsGestionOpen(false)
+    setIsRegistroOpen(true)
 
 
 
@@ -78,4 +80,4 @@ function RegistroC (options,index,toggleOPTIONS,props){
         )
     }
 
-export default withRouter(RegistroC)
+export default withRouter(RegisterBox)
