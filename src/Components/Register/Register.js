@@ -41,7 +41,7 @@ function Register(props) {
                         usuario,
                         email,
 						cedula,
-						password
+						
                     );
  
                     setName("");
