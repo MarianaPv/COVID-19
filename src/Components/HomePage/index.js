@@ -25,7 +25,7 @@ function SignIn(props) {
 				</div>	
 				
 				<div className="form" onSubmit={e => e.preventDefault() && false}>
-				<div className="ingresar" style={{color: "black", fontSize: "20px",marginLeft:"5vw"}}>Ingresar:</div>
+				<div className="ingresar" style={{color: "black", fontSize: "28px", marginLeft:"5vw"}}>Ingresar:</div>
 					<div margin="normal" >
 						<InputLabel htmlFor="email" style={{marginLeft:"5vw"}}>Correo Electrónico</InputLabel>
 						<Input id="email" name="email" autoFocus value={email} onChange={e => setEmail(e.target.value)} />

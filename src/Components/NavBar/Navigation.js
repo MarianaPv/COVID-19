@@ -25,7 +25,7 @@ function Navigation(props) {
                 
               </li>
               <li>
-                <Link to={ROUTES.HOME}>MAPA DE CASOS</Link>
+                <Link to={ROUTES.MAPA}>MAPA DE CASOS</Link>
                 
               </li>
               <li>

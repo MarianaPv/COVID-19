@@ -12,7 +12,7 @@ require("firebase/auth");
 require("firebase/database");
 
 function Casos(props) {
-  const [isRegistroOpen, setIsRegistroOpen] = useState(true);
+  const [isRegistroOpen, setIsRegistroOpen] = useState(true);   
 
   return (
     <div>

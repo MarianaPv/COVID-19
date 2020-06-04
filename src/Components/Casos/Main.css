@@ -215,3 +215,8 @@ body,
 .show {
     visibility: visible;
 }
+
+.direccion{
+    display:flex;
+    
+}

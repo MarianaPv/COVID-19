@@ -5,7 +5,7 @@ import app from "firebase/app";
 import Navigation from "../NavBar/Navigation";
 import { withRouter } from "react-router-dom";
 import * as ROUTES from "../Routes/Routes";
-import "./RegistroC.css";
+
 import "firebase/database";
 
 var firebase = require("firebase/app");

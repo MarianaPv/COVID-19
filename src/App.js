@@ -5,6 +5,7 @@ import Register from './Components/Register/Register'
 import Home from './Components/Home/Home'
 import RegistroC from './Components/Casos/RegistroC'
 import Casos from './Components/Casos/Main'
+import Mapa from './Components/Map/Map'
 import { CssBaseline, CircularProgress } from '@material-ui/core'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import firebase from './firebase'
@@ -38,6 +39,7 @@ function App() {
 		<Route exact path="/home" component={Home} />
 		<Route exact path="/casos" component={Casos} />
 		<Route exact path="/registro-casos" component={RegistroC} />
+		<Route exact path="/mapa-casos" component={Mapa} />
 				</Switch>
 			</Router>
       </div>
