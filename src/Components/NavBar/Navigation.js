@@ -4,14 +4,20 @@ import * as ROUTES from "../Routes/Routes";
 import { withRouter } from "react-router-dom";
 import "./Navigation.css";
 
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/database");
+
 function Navigation(props) {
   const logout = () => {
+    firebase.auth().signOut()
     props.history.replace("/"); //Irse a página de login al hacer logout
   };
 
-
   return (
     <div className="bodyy">
+
+
       <section>
         <header >
           <div className="navBox">
@@ -35,7 +41,12 @@ function Navigation(props) {
 
             </ul>
           </div>
-          <input className="logout" type="image" src="logocovid.png" />
+          
+         <div style={{display:"flex"}}>
+         <img className="logo" type="image" src="logocovid.png" />
+          <input className ="logout" src="bye.png" type="image" onClick={logout}/>
+          
+          </div>
         </header>
       </section>
     </div>

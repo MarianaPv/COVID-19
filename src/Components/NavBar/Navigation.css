@@ -61,14 +61,23 @@
     background-color:rgb(190, 207, 190);
     color: #0a4e53;
   }
-  .logout {
+
+  .logo {
     height: 13vh;
     width: 9vw;
-  
+    margin-left: 25vw;
     padding: 3vh 0vw;
-    margin-left: 77vw;
     display: block;
-    flex-direction: row;
+    
+  }
+  
+  .logout {
+    height: 13vh;
+    width: 4vw;
+    margin-left: 2vw;
+    padding: 3vh 0vw;
+    
+    
   }
   
 
