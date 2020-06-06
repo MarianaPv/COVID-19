@@ -60,7 +60,7 @@ class Firebase {
 		return this.auth.currentUser && this.auth.currentUser.displayName
 	}
 
-    datosDB(nombre, apellido, usuario,email, cedula,password) {
+    datosDB(nombre, apellido, usuario,email, cedula, rol) {
         app.database()
             .ref("usuarios/" + email.split(".")[0])
             .update({
@@ -69,7 +69,7 @@ class Firebase {
                 usuario: usuario,
                 email: email,
                 cedula: cedula,
-                contraseña: password
+                rol: rol
             });
     }
 

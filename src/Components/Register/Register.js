@@ -11,11 +11,6 @@ import "firebase/auth";
 
 function Register(props) {
 		
-	app.auth().onAuthStateChanged(user => {
-        if (!user) {
-            props.history.push("/");
-        }
-    });
 
 
 	const [name, setName] = useState('')
@@ -28,7 +23,7 @@ function Register(props) {
 
 
 	const onRegister = e => {
-        e.preventDefault();
+		e.preventDefault();
 
         try {
 
@@ -41,6 +36,7 @@ function Register(props) {
                         usuario,
                         email,
 						cedula,
+						rol
 						
                     );
  
@@ -49,8 +45,9 @@ function Register(props) {
                     setUsuario("");
                     setEmail("");
                     setPassword("");
-                    setCedula("");
-                    alert("Bien hecho")
+					setCedula("");
+					setRol("");
+                    alert("¡Se ha registrado el usuario!")
                 })
                 
         } catch (error) {
@@ -100,8 +97,8 @@ function Register(props) {
 					</div>
 					<div className="options" margin="normal" required fullWidth style={{marginLeft:"5vw"}}>
 					<InputLabel htmlFor="name" >Seleccione su rol</InputLabel>
-					<select className="menu">
-					<option value="medico" >Seleccione</option>
+					<select onChange={(e) => setRol(e.target.value)} className="menu">
+					<option value="selecciona" >Seleccione</option>
 							<option value="medico" >Médico</option>
 							<option value="ayudante">Ayudante</option>
 

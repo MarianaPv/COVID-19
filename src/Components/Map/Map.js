@@ -12,7 +12,6 @@ import GoogleMapReact from 'google-map-react';
 import _ from "lodash";
 
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 function Mapa (){
 
@@ -52,8 +51,7 @@ function Mapa (){
           console.log(lat, lng);
           setLat(lat)
           setLng(lng)
-          console.log(lat)
-          console.log(lng)
+
         },
         error => {
           console.error(error);
@@ -66,19 +64,13 @@ function Mapa (){
       
       <div >
         <Navigation/>
-        <div style={{ height: '100vh', width: '100%' }}>
+        <div style={{ marginLeft:"15vw", marginTop:"5vh",marginBottom:"5vh",height: '80vh', width: '70%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyAps7iV33s_Nk0RwrOpQDzKw8CrJmgKJkk"}}
           defaultCenter={{lat:10.9878, lng:-74.7889} }
           defaultZoom={11}
           
         >
-         <AnyReactComponent
-            lat={lat}
-            lng={lng}
-            
-          />
-          
 
         </GoogleMapReact>
         </div>
@@ -87,6 +79,8 @@ function Mapa (){
     )
   } 
 
-
+  const Marker = props => {
+    return <div className="SuperAwesomePin"></div>
+  }
 
 export default Mapa;
