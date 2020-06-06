@@ -101,6 +101,7 @@ function Register(props) {
 					<div className="options" margin="normal" required fullWidth style={{marginLeft:"5vw"}}>
 					<InputLabel htmlFor="name" >Seleccione su rol</InputLabel>
 					<select className="menu">
+					<option value="medico" >Seleccione</option>
 							<option value="medico" >Médico</option>
 							<option value="ayudante">Ayudante</option>
 

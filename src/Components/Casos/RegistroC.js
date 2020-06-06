@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "firebase/auth";
 import app from "firebase/app";
@@ -8,6 +8,7 @@ import * as ROUTES from "../Routes/Routes";
 import "firebase/database";
 import DatePicker from 'react-date-picker';
 import "react-datepicker/dist/react-datepicker.css";
+
 
 var firebase = require("firebase/app");
 require("firebase/auth");
@@ -29,23 +30,51 @@ function RegisterBox(props) {
   const [via1, setVia1] = useState("");
   const [via2, setVia2] = useState("");
   const [num, setNum] = useState("");
+  const [tipoV2, setTipoV2] = useState("");
+  const [via12, setVia12] = useState("");
+  const [via22, setVia22] = useState("");
+  const [num2, setNum2] = useState("");
   
+
+
+
 
   const handleSubmit2 = () => {
     setIdC(idC + 1);
-    setResiC(tipoV+via1+via2+num)
+    setResiC(tipoV+" "+via1+" "+ "#"+via2+"-"+num)
     console.log(resiC)
+
+    setTrabajoC(tipoV2+" "+via12+" "+ "#"+via22+"-"+num2)
+    console.log(trabajoC)
+    console.log(nacC)
+
+    Number.prototype.padLeft = function(base, chr) {
+      var len = String(base || 10).length - String(this).length + 1;
+      return len > 0 ? new Array(len).join(chr || "0") + this : this;
+  };
+  
+    let nacC1 =          [
+              (nacC.getMonth() + 1).padLeft(),
+              nacC.getDate().padLeft(),
+              nacC.getFullYear()
+          ].join("/")
+
+    let fechaExamenC2 =          [
+            (fechaExamenC.getMonth() + 1).padLeft(),
+            fechaExamenC.getDate().padLeft(),
+            fechaExamenC.getFullYear()
+        ].join("/")
 
     let resumen = {
       nombre: nombreC,
       apellido: apellidoC,
       cedula: cedulaC,
       sexo: sexoC,
-      fechaNacimiento: nacC,
+      fechaNacimiento: nacC1,
       direccionResidencia: resiC,
       direccionTrabajo: trabajoC,
       resultadoExamen: examenC,
-      fechaExamen: fechaExamenC,
+      fechaExamen: fechaExamenC2,
       idCaso: idC,
     };
 
@@ -79,35 +108,44 @@ function RegisterBox(props) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", marginTop: "4vh" }}>
-      <div>Nombre</div>
-      <input style ={{marginBottom:"1.5vh"}}onChange={(e) => setNombreC(e.target.value)}></input>
-      <div>Apellido</div>
-      <input style ={{marginBottom:"1.5vh"}} onChange={(e) => setApellidoC(e.target.value)}></input>
-      <div>Cédula</div>
-      <input style ={{marginBottom:"1.5vh"}} onChange={(e) => setCedulaC(e.target.value)}></input>
-      <div>Sexo</div>
-      <input style ={{marginBottom:"1.5vh"}} onChange={(e) => setSexoC(e.target.value)}></input>
-
-      <div>Fecha de Nacimiento</div>
+      <div className="division">
+      <div style={{marginRight:"0.5vw"}}>Nombre:</div>
+      <input onChange={(e) => setNombreC(e.target.value)}></input>
+      <div style={{marginLeft:"1vw", marginRight:"0.5vw"}}>Apellido:</div>
+      <input onChange={(e) => setApellidoC(e.target.value)}></input>
+      </div>
+      <div className="division">
+      <div style={{marginRight:"0.5vw"}}>Cédula:</div>
+      <input  onChange={(e) => setCedulaC(e.target.value)}></input>
+      <div style={{marginLeft:"2.35vw", marginRight:"0.5vw"}}>Sexo:</div>
+      <select onChange={(e) => setSexoC(e.target.value)}  className="menu2" style={{width:"9vw",display:"flex", flexDirection:"column", marginRight:"2vw"}}>
+      <option style={{color:"grey"}}>Seleccione</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+      </select>
+      </div>
+      <div className="division">
+      <div style={{marginRight:"0.5vw"}}>Fecha de Nacimiento:</div>
       <DatePicker
           selected={startDate}
           onChange={handleDatePicker}
           value={nacC}
           dateFormat="MMMM d, yyyy "
         />
-     
-      <div style ={{marginTop:"1.5vh"}}>Dirección de Residencia</div>
+     </div>
+      <div className="division" style={{marginBottom:"1vh"}}>Dirección de Residencia: </div>
       <div className="direccion">
-      <select className="menu2" style={{width:"9vw",display:"flex", flexDirection:"column", marginRight:"2vw"}}>
-							<option value="autopista"  onChange={(e) => setTipoV("Autopista")}>Autopista</option>
-              <option value="avenida"  onChange={(e) => setTipoV("Avenida")}>Avenida</option>
-              <option value="calle"  onChange={(e) => setTipoV("Calle")}>Calle</option>
-              <option value="carrera"  onChange={(e) => setTipoV("Carrera")}>Carrera</option>
-              <option value="circular"  onChange={(e) => setTipoV("Circular")}>Circular</option>
-              <option value="diagonal"  onChange={(e) => setTipoV("Diagonal")}>Diagonal</option>
-              <option value="manzana"  onChange={(e) => setTipoV("Manzana")}>Manzana</option>
-              <option value="transversal"  onChange={(e) => setTipoV("Transversal")}>Transversal</option>
-							<option value="via"  onChange={(e) => setTipoV("Via")}>Via</option>
+      <select  onChange={(e) => setTipoV(e.target.value)}  className="menu2" style={{width:"9vw",display:"flex", flexDirection:"column", marginRight:"2vw"}}>
+							<option style={{color:"grey"}}>Via principal</option>
+              <option value="Autopista">Autopista</option>
+              <option value="Avenida" >Avenida</option>
+              <option value="Calle">Calle</option>
+              <option value="Carrera">Carrera</option>
+              <option value="Circular" >Circular</option>
+              <option value="Diagonal">Diagonal</option>
+              <option value="Manzana">Manzana</option>
+              <option value="Transversal">Transversal</option>
+							<option value="Via" >Via</option>
       </select>
 
       <input style={{flexDirection:"column", width:"5vw"}} onChange={(e) => setVia1(e.target.value)}></input>
@@ -117,17 +155,45 @@ function RegisterBox(props) {
       <input style={{flexDirection:"column", width:"5vw"}} onChange={(e) => setNum(e.target.value)}></input>
       </div>
       
-      <div style ={{marginTop:"1.5vh"}}>Dirección de trabajo</div>
-      <input style ={{marginBottom:"1.5vh"}} onChange={(e) => setTrabajoC(e.target.value)}></input>
-      <div>Resultado de examen (Positivo/Negativo)</div>
-      <input style ={{marginBottom:"1.5vh"}} onChange={(e) => setExamenC(e.target.value)}></input>
-      <div>Fecha de examen</div>      
+      <div className="division" style={{marginBottom:"1vh"}} >Dirección de Trabajo:</div>
+      <div className="direccion">
+      <select  onChange={(e) => setTipoV2(e.target.value)}  className="menu2" style={{width:"9vw",display:"flex", flexDirection:"column", marginRight:"2vw"}}>
+      <option style={{color:"grey"}}>Via principal</option>
+              <option value="Autopista">Autopista</option>
+              <option value="Avenida" >Avenida</option>
+              <option value="Calle">Calle</option>
+              <option value="Carrera">Carrera</option>
+              <option value="Circular" >Circular</option>
+              <option value="Diagonal">Diagonal</option>
+              <option value="Manzana">Manzana</option>
+              <option value="Transversal">Transversal</option>
+							<option value="Via" >Via</option>
+      </select>
+
+      <input style={{flexDirection:"column", width:"5vw"}} onChange={(e) => setVia12(e.target.value)}></input>
+      <div style={{marginLeft:"1.3vw", marginRight:"1.3vw"}}>    #   </div>
+      <input style={{flexDirection:"column", width:"5vw", marginRight:"2w"}} onChange={(e) => setVia22(e.target.value)}></input>
+      <div style={{marginLeft:"1.3vw", marginRight:"1.3vw"}}>-</div>
+      <input style={{flexDirection:"column", width:"5vw"}} onChange={(e) => setNum2(e.target.value)}></input>
+      </div>
+
+      <div className="division">
+      <div style={{marginRight:"1vw"}}>Resultado de examen:</div>
+      <select  onChange={(e) => setExamenC(e.target.value)}  className="menu2" style={{width:"9vw",display:"flex", flexDirection:"column", marginRight:"2vw"}}>
+      <option style={{color:"grey"}}>Seleccione</option>
+              <option value="Positivo">Positivo</option>
+              <option value="Negativo">Negativo</option>
+      </select>
+      </div>
+      <div className="division">
+      <div style={{marginRight:"0.5vw"}}>Fecha de examen:</div>      
       <DatePicker
           selected={startDate}
           onChange={handleDatePicker2}
           value={fechaExamenC}
           dateFormat="MMMM d, yyyy "
         />
+      </div>
 
       <button
         style={{

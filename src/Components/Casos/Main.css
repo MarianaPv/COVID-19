@@ -4,6 +4,7 @@ body,
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+    
 
 }
 
@@ -18,6 +19,7 @@ body,
     width: 100vw;
     flex-direction: column;
     display: flex;
+    
 }
 
 .controller.selected-controller:focus{
@@ -35,8 +37,8 @@ body,
     line-height: 2;
     cursor: pointer;
     margin-right: 5vw;
-    width:100%
-  
+    width:100%;
+    
 
     
 }
@@ -79,7 +81,7 @@ body,
 }
 .box-container {
     display: flex;
-    
+  
     width: 50vw;
     height: 5vh;
     margin-left: 25vw;
@@ -94,6 +96,7 @@ body,
     width:30vw;
     margin-left: 34vw;
     margin-top: -1.5vh;
+    
 }
 
 
@@ -218,5 +221,12 @@ body,
 
 .direccion{
     display:flex;
+    margin-top:"5vh";
     
+}
+
+.division{
+    display: flex;
+    margin-top: 3.7vh;
+
 }
