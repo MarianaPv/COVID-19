@@ -37,7 +37,8 @@ export default function SimpleMenu() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState();
-  const [idC, setIdC] = useState(1);
+  const [estadoActualizado, setEstadoActualizado] = useState("");
+
   const [Name, setName] = React.useState();
   let data = [];
   const handleClickListItem = (event) => {
@@ -56,25 +57,26 @@ export default function SimpleMenu() {
     // //ID
     if (selectedIndex == 0) {
       var userRef = firebase.database().ref("/casos/");
-      var userQuery = userRef
-        .orderByChild("idCaso")
-        .equalTo(parseInt(Name, 10));
+      var userQuery = userRef.orderByChild("id").equalTo(parseInt(Name, 10));
       userQuery.once("value", function (snapshot) {
         snapshot.forEach(function (child) {
           data = Object.values(child.val());
           console.log(data);
-          var row = `<tr>
-          <td>${data[0]}</td>
-          <td>${data[1]}</td>
-          <td>${data[2]}</td>
-          <td>${data[3]}</td>
-          <td>${data[4]}</td>
-          <td>${data[5]}</td>
-          <td>${data[6]}</td>
-          <td>${data[7]}</td>
-          <td>${data[8]}</td>
-          <td>${data[9]}</td>
-          </tr>`;
+
+          var row = (
+            <tr>
+              <td>{data}</td>
+              <td>{data[1]}</td>
+              <td>{data[2]}</td>
+              <td>{data[3]}</td>
+              <td>{data[4]}</td>
+              <td>{data[5]}</td>
+              <td>{data[6]}</td>
+              <td>{data[7]}</td>
+              <td>{data[8]}</td>
+              <td>{data[9]}</td>
+            </tr>
+          );
 
           var el_table = document.getElementById("tabla");
 
@@ -122,8 +124,8 @@ export default function SimpleMenu() {
           <td>${data[1]}</td>
           <td>${data[2]}</td>
           <td>${data[3]}</td>
-          <td>${data[4].substr(0, data[4].indexOf("T"))}</td>
-          <td>${data[5].substr(0, data[5].indexOf("T"))}</td>
+          <td>${data[4]}</td>
+          <td>${data[5]}</td>
           <td>${data[6]}</td>
           <td>${data[7]}</td>
           <td>${data[8]}</td>

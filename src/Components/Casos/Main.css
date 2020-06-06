@@ -57,6 +57,9 @@ body,
   color: #36ad9e;
 }
 
+.makeStyles-root-1 {
+  margin-left: "15vw";
+}
 .selected-controller {
   transition: border 0.5s ease-out;
 }
