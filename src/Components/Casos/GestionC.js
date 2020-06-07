@@ -9,12 +9,8 @@ import Menu from "@material-ui/core/Menu";
 import TextField from "@material-ui/core/TextField";
 import "firebase/auth";
 import "firebase/database";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 var firebase = require("firebase/app");
@@ -208,28 +204,21 @@ export default function SimpleMenu() {
       </div>
 
       <TableContainer style={{ width: "60vw" }} component={Paper}>
-        <Table
-          style={{ width: "50vw" }}
-          id="tabla"
-          className={classes.table}
-          aria-label="simple table"
-        >
-          <TableHead>
-            <TableRow>
-              <TableCell>Apellido</TableCell>
-              <TableCell align="right">Cédula</TableCell>
-              <TableCell align="right">Dirección de residencia</TableCell>
-              <TableCell align="right">Dirección de trabajo</TableCell>
-              <TableCell align="right">Fecha de examen</TableCell>
-              <TableCell align="right">Fecha de nacimiento</TableCell>
-              <TableCell align="right">ID Caso</TableCell>
-              <TableCell align="right">Nombre</TableCell>
-              <TableCell align="right">Resultado de examen</TableCell>
-              <TableCell align="right">Sexo</TableCell>
-              <TableCell align="right">Estado</TableCell>
-            </TableRow>
-          </TableHead>
-        </Table>
+        <TableHead>
+          <tr>
+            <td>Apellido</td>
+            <td>Cédula</td>
+            <td>Dirección de residencia</td>
+            <td>Dirección de trabajo</td>
+            <td>Fecha de examen</td>
+            <td>Fecha de nacimiento</td>
+            <td>ID Caso</td>
+            <td>Nombre</td>
+            <td>Resultado de examen</td>
+            <td>Sexo</td>
+            <td>Estado</td>
+          </tr>
+        </TableHead>
       </TableContainer>
     </div>
   );
