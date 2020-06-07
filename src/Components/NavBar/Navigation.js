@@ -10,42 +10,39 @@ require("firebase/database");
 
 function Navigation(props) {
   const logout = () => {
-    firebase.auth().signOut()
+    firebase.auth().signOut();
     props.history.replace("/"); //Irse a página de login al hacer logout
   };
 
   return (
     <div className="bodyy">
-
-
       <section>
-        <header >
+        <header>
           <div className="navBox">
-            <ul className="extra" >
+            <ul className="extra">
               <li>
                 <Link to={ROUTES.HOME}>HOME</Link>
-                
               </li>
               <li>
                 <Link to={ROUTES.CASOS}>CASOS</Link>
-                
               </li>
               <li>
                 <Link to={ROUTES.MAPA}>MAPA DE CASOS</Link>
-                
               </li>
               <li>
-                <Link to={ROUTES.HOME}>BÚSQUEDA DE CASOS</Link>
-                
+                <Link to={ROUTES.BUSQUEDA}>BÚSQUEDA DE CASOS</Link>
               </li>
-
             </ul>
           </div>
-          
-         <div style={{display:"flex"}}>
-         <img className="logo" type="image" src="logocovid.png" />
-          <input className ="logout" src="bye.png" type="image" onClick={logout}/>
-          
+
+          <div style={{ display: "flex" }}>
+            <img className="logo" type="image" src="logocovid.png" />
+            <input
+              className="logout"
+              src="bye.png"
+              type="image"
+              onClick={logout}
+            />
           </div>
         </header>
       </section>

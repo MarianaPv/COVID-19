@@ -73,13 +73,27 @@ function RegisterBox(props) {
     let contador = {
       contador: parseInt(idC) + parseInt(1),
     };
-
+    Number.prototype.padLeft = function (base, chr) {
+      let len = String(base || 10).length - String(this).length + 1;
+      return len > 0 ? new Array(len).join(chr || "0") + this : this;
+    };
+    let d = new Date(),
+      dform = [
+        (d.getMonth() + 1).padLeft(),
+        d.getDate().padLeft(),
+        d.getFullYear(),
+      ].join("/");
+    let array = [];
+    let fechaEstado = examenC + "@" + dform;
+    array.push(fechaEstado);
     let resumen = {
       nombre: nombreC,
       apellido: apellidoC,
       cedula: cedulaC,
+      arrayStates: array,
       sexo: sexoC,
       fechaNacimiento: nacC1,
+      estadoTemp: examenC,
       direccionResidencia: tipoV + " " + via1 + " " + "#" + via2 + "-" + num,
       direccionTrabajo: tipoV2 + " " + via12 + " " + "#" + via22 + "-" + num2,
       resultadoExamen: examenC,

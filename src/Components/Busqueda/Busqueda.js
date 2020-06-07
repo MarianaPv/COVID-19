@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Main.css";
+import "./Busqueda.css";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -13,6 +13,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import Paper from "@material-ui/core/Paper";
 import _ from "lodash";
+import Navigation from "../NavBar/Navigation";
+import MapaBus from "./MapaBus";
 
 var firebase = require("firebase/app");
 require("firebase/auth");
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const options = ["ID", "Cédula", "Nombre"];
 const consulta = new Map();
 
-export default function SimpleMenu() {
+export default function Busqueda() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -211,7 +213,7 @@ export default function SimpleMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleSubmit = () => {
+  const handleSubmit3 = () => {
     // //ID
     if (selectedIndex == 0) {
       setTemporaryFilter(
@@ -247,59 +249,59 @@ export default function SimpleMenu() {
   };
 
   return (
-    <div className={classes.root}>
-      <div style={{ marginLeft: "2vw", marginTop: "5vh" }}>
-        <div style={{ marginTop: "5vh", width: "50%" }}>
-          <List component="nav" aria-label="Device settings">
-            <ListItem
-              button
-              aria-haspopup="true"
-              aria-controls="lock-menu"
-              aria-label="Búsqueda de casos por:"
-              onClick={handleClickListItem}
-              style={{ background: "#84c2ba" }}
-            >
-              <ListItemText
-                primary="Clic aquí para filtrar:"
-                secondary={options[selectedIndex]}
-              />
-            </ListItem>
-          </List>
-          <Menu
-            id="lock-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
+    <div style={{ width: "100%", height: "100%" }}>
+      <Navigation />
+      <div style={{ marginLeft: "15vw", marginTop: "5vh", width: "20%" }}>
+        <List component="nav" aria-label="Device settings">
+          <ListItem
+            button
+            aria-haspopup="true"
+            aria-controls="lock-menu"
+            aria-label="Búsqueda de casos por:"
+            onClick={handleClickListItem}
+            style={{ background: "#84c2ba" }}
           >
-            {options.map((option, index) => (
-              <MenuItem
-                key={option}
-                selected={index === selectedIndex}
-                onClick={(event) => handleMenuItemClick(event, index)}
-              >
-                {option}
-              </MenuItem>
-            ))}
-          </Menu>
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField
-              value={Name}
-              onChange={(event) => {
-                setName(event.target.value);
-              }}
-              id="outlined-basic"
-              label="Buscar"
-              variant="outlined"
+            <ListItemText
+              primary="Clic aquí para filtrar:"
+              secondary={options[selectedIndex]}
             />
-          </form>
-        </div>
+          </ListItem>
+        </List>
+        <Menu
+          id="lock-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          {options.map((option, index) => (
+            <MenuItem
+              key={option}
+              selected={index === selectedIndex}
+              onClick={(event) => handleMenuItemClick(event, index)}
+            >
+              {option}
+            </MenuItem>
+          ))}
+        </Menu>
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField
+            value={Name}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+            id="outlined-basic"
+            label="Buscar"
+            variant="outlined"
+          />
+        </form>
         <div className="boton">
           <button
             style={{
               height: "4vh",
               border: "0",
               borderRadius: "5px",
+              marginTop: "-5vh",
               marginBottom: "5vh",
               marginLeft: "21vw",
               background: "#36ad9e",
@@ -309,13 +311,13 @@ export default function SimpleMenu() {
               fontSize: "15px",
               cursor: "pointer",
             }}
-            onClick={handleSubmit}
+            onClick={handleSubmit3}
           >
             Ir
           </button>
         </div>
       </div>
-      <div style={{ marginLeft: "2vw", width: "40vw" }}>
+      <div style={{ marginLeft: "15vw", width: "69vw" }}>
         <table className="tableClosed2">
           <tr>
             <th>Apellido</th>
@@ -334,6 +336,7 @@ export default function SimpleMenu() {
           {filterArray}
         </table>
       </div>
+      <MapaBus />
     </div>
   );
 }
