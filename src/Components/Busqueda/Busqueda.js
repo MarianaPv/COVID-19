@@ -259,7 +259,7 @@ export default function Busqueda() {
             aria-controls="lock-menu"
             aria-label="Búsqueda de casos por:"
             onClick={handleClickListItem}
-            style={{ background: "#84c2ba" }}
+            style={{ background: "#bddbd7" }}
           >
             <ListItemText
               primary="Clic aquí para filtrar:"
@@ -301,9 +301,9 @@ export default function Busqueda() {
               height: "4vh",
               border: "0",
               borderRadius: "5px",
-              marginTop: "-5vh",
+              marginTop: "5vh",
               marginBottom: "5vh",
-              marginLeft: "21vw",
+              marginLeft: "0vw",
               background: "#36ad9e",
               color: "white",
               width: "9vw",

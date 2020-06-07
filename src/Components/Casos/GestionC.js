@@ -257,7 +257,7 @@ export default function SimpleMenu() {
               aria-controls="lock-menu"
               aria-label="Búsqueda de casos por:"
               onClick={handleClickListItem}
-              style={{ background: "#84c2ba" }}
+              style={{ background: "#bddbd7" }}
             >
               <ListItemText
                 primary="Clic aquí para filtrar:"
@@ -282,6 +282,7 @@ export default function SimpleMenu() {
               </MenuItem>
             ))}
           </Menu>
+
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               value={Name}
@@ -293,26 +294,27 @@ export default function SimpleMenu() {
               variant="outlined"
             />
           </form>
-        </div>
-        <div className="boton">
-          <button
-            style={{
-              height: "4vh",
-              border: "0",
-              borderRadius: "5px",
-              marginBottom: "5vh",
-              marginLeft: "21vw",
-              background: "#36ad9e",
-              color: "white",
-              width: "9vw",
-              fontFamily: "'Jost', sans-serif",
-              fontSize: "15px",
-              cursor: "pointer",
-            }}
-            onClick={handleSubmit}
-          >
-            Ir
-          </button>
+          <div className="boton">
+            <button
+              style={{
+                height: "4vh",
+                border: "0",
+                borderRadius: "5px",
+                marginTop: "5vh",
+                marginBottom: "5vh",
+                marginLeft: "0vw",
+                background: "#36ad9e",
+                color: "white",
+                width: "9vw",
+                fontFamily: "'Jost', sans-serif",
+                fontSize: "15px",
+                cursor: "pointer",
+              }}
+              onClick={handleSubmit}
+            >
+              Ir
+            </button>
+          </div>
         </div>
       </div>
       <div style={{ marginLeft: "2vw", width: "40vw" }}>
