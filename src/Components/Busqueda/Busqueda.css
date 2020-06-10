@@ -23,3 +23,8 @@ tr:nth-child(even) {
   width: "70%";
   height: "10vh";
 }
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}

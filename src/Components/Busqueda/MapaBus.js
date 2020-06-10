@@ -6,8 +6,12 @@ import * as ROUTES from "../Routes/Routes";
 import app from "firebase/app";
 import "firebase/auth";
 import Geocode from "react-geocode";
-import GoogleMapReact from "google-map-react";
 import _ from "lodash";
+import "./Busqueda.css";
+import L from "leaflet";
+import { Map, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import markerCasa from "./home.png";
+import markerTrabajo from "./work.png";
 
 function Mapa() {
   const [allData, setAllData] = useState([]);
@@ -57,18 +61,22 @@ function Mapa() {
           width: "70%",
         }}
       >
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyAps7iV33s_Nk0RwrOpQDzKw8CrJmgKJkk" }}
-          defaultCenter={{ lat: 10.9878, lng: -74.7889 }}
-          defaultZoom={11}
-        ></GoogleMapReact>
+        <Map className="map" center={[10.9878, -74.7889]} zoom={12}>
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker
+            position={[10.9, -74.5]}
+            icon={L.icon({
+              iconUrl: markerCasa,
+              iconSize: [40, 40],
+            })}
+          ></Marker>
+        </Map>
       </div>
     </div>
   );
 }
-
-const Marker = (props) => {
-  return <div className="SuperAwesomePin"></div>;
-};
 
 export default Mapa;

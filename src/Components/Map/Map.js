@@ -8,7 +8,13 @@ import app from "firebase/app";
 import "firebase/auth";
 import Navigation from "../NavBar/Navigation";
 import Geocode from "react-geocode";
-import GoogleMapReact from "google-map-react";
+import L from "leaflet";
+import { Map, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import casoUCI from "./orange.png";
+import casoCurado from "./pink.png";
+import casoRed from "./red.png";
+import casoTratamiento from "./yellow.png";
+import casoNegativo from "./green.png";
 import _ from "lodash";
 
 function Mapa() {
@@ -60,26 +66,22 @@ function Mapa() {
           width: "70%",
         }}
       >
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyAps7iV33s_Nk0RwrOpQDzKw8CrJmgKJkk" }}
-          defaultCenter={{ lat: 10.9878, lng: -74.7889 }}
-          defaultZoom={11}
-        >
-          <Marker
-            key={allData.id}
-            position={{
-              lat: 3,
-              lng: 4,
-            }}
+        <Map className="map" center={[10.9878, -74.7889]} zoom={12}>
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-        </GoogleMapReact>
+          <Marker
+            position={[10.9, -74.5]}
+            icon={L.icon({
+              iconUrl: casoCurado,
+              iconSize: [40, 40],
+            })}
+          ></Marker>
+        </Map>
       </div>
     </div>
   );
 }
-
-const Marker = (props) => {
-  return <div className="SuperAwesomePin"></div>;
-};
 
 export default Mapa;
