@@ -1,0 +1,18 @@
+.chart {
+  margin-left: 10vw;
+  margin-top: 5vh;
+}
+
+.chart2 {
+  margin-left: 5vw;
+  margin-top: 5vh;
+}
+
+.welcome {
+  margin-left: 10vw;
+  margin-top: 5vh;
+  flex-direction: row;
+  width: 50vw;
+  font-family: "Jost", sans-serif;
+  font-size: 25px;
+}

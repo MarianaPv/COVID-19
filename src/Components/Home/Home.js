@@ -136,92 +136,102 @@ function Home(props) {
   return (
     <div>
       <Navigation />
-      <Chart
-        width={"500px"}
-        height={"300px"}
-        chartType="PieChart"
-        loader={<div>Loading Chart</div>}
-        data={[
-          ["Casos", "Negativo/Positivo"],
-          ["Casos Positivos", positivos],
-          ["Casos Negativos", negativos],
-        ]}
-        options={{
-          title: "Casos Positivos / Negativos",
-        }}
-        rootProps={{ "data-testid": "1" }}
-      />
+      <div className="welcome">
+        Haga clic para observar las estadísticas
+        <button
+          style={{
+            height: "4vh",
+            border: "0",
+            borderRadius: "5px",
+            marginTop: "5vh",
+            marginBottom: "5vh",
+            marginLeft: "5vw",
+            background: "#36ad9e",
+            color: "white",
+            width: "9vw",
+            fontFamily: "'Jost', sans-serif",
+            fontSize: "15px",
+            cursor: "pointer",
+          }}
+          onClick={handleSubmit1}
+        >
+          Ir
+        </button>
+      </div>
+      <div style={{ display: "flex" }}>
+        <Chart
+          className="chart"
+          width={"600px"}
+          height={"400px"}
+          chartType="LineChart"
+          loader={<div>Loading Chart</div>}
+          data={xy}
+          options={{
+            title: "Casos Diarios",
 
-      <Chart
-        width={"500px"}
-        height={"300px"}
-        chartType="PieChart"
-        loader={<div>Loading Chart</div>}
-        data={[
-          ["Casos", "Infectado/Fallecido/Curado"],
-          ["Infectados", positivos],
-          ["Fallecidos", fallecido],
-          ["Curado", curado],
-        ]}
-        options={{
-          title: "Casos Totales Registrados",
-        }}
-        rootProps={{ "data-testid": "1" }}
-      />
+            hAxis: {
+              title: "Tiempo",
+            },
+            vAxis: {
+              title: "Población",
+            },
+          }}
+        />
 
-      <Chart
-        width={"500px"}
-        height={"300px"}
-        chartType="PieChart"
-        loader={<div>Loading Chart</div>}
-        data={[
-          ["Casos", "Infectados"],
-          ["Fallecidos", positivos],
-          ["Positivo en UCI", UCI],
-          ["Positivo en casa", casa],
-          ["Positivo en hospital", hospital],
-        ]}
-        options={{
-          title: "Situació Infectados",
-        }}
-        rootProps={{ "data-testid": "1" }}
-      />
-
-      <Chart
-        width={"600px"}
-        height={"400px"}
-        chartType="LineChart"
-        loader={<div>Loading Chart</div>}
-        data={xy}
-        options={{
-          hAxis: {
-            title: "Time",
-          },
-          vAxis: {
-            title: "Popularity",
-          },
-        }}
-      />
-
-      <button
-        style={{
-          height: "4vh",
-          border: "0",
-          borderRadius: "5px",
-          marginTop: "5vh",
-          marginBottom: "5vh",
-          marginLeft: "0vw",
-          background: "#36ad9e",
-          color: "white",
-          width: "9vw",
-          fontFamily: "'Jost', sans-serif",
-          fontSize: "15px",
-          cursor: "pointer",
-        }}
-        onClick={handleSubmit1}
-      >
-        Ir
-      </button>
+        <Chart
+          className="chart2"
+          width={"500px"}
+          height={"300px"}
+          chartType="PieChart"
+          loader={<div>Loading Chart</div>}
+          data={[
+            ["Casos", "Infectado/Fallecido/Curado"],
+            ["Infectados", positivos],
+            ["Fallecidos", fallecido],
+            ["Curado", curado],
+          ]}
+          options={{
+            title: "Casos Totales Registrados",
+          }}
+          rootProps={{ "data-testid": "1" }}
+        />
+      </div>
+      <div style={{ display: "flex" }}>
+        <Chart
+          className="chart"
+          width={"500px"}
+          height={"300px"}
+          chartType="PieChart"
+          loader={<div>Loading Chart</div>}
+          data={[
+            ["Casos", "Infectados"],
+            ["Fallecidos", positivos],
+            ["Positivo en UCI", UCI],
+            ["Positivo en casa", casa],
+            ["Positivo en hospital", hospital],
+          ]}
+          options={{
+            title: "Situación Infectados",
+          }}
+          rootProps={{ "data-testid": "1" }}
+        />
+        <Chart
+          className="chart2"
+          width={"500px"}
+          height={"300px"}
+          chartType="PieChart"
+          loader={<div>Loading Chart</div>}
+          data={[
+            ["Casos", "Negativo/Positivo"],
+            ["Casos Positivos", positivos],
+            ["Casos Negativos", negativos],
+          ]}
+          options={{
+            title: "Casos Positivos / Negativos",
+          }}
+          rootProps={{ "data-testid": "1" }}
+        />
+      </div>
     </div>
   );
 }

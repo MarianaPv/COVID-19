@@ -67,10 +67,17 @@ function Mapa() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Marker
-            position={[10.9, -74.5]}
+            position={[11.01, -74.85]}
             icon={L.icon({
               iconUrl: markerCasa,
               iconSize: [40, 40],
+            })}
+          ></Marker>
+          <Marker
+            position={[11.02, -74.8015]}
+            icon={L.icon({
+              iconUrl: markerTrabajo,
+              iconSize: [37, 37],
             })}
           ></Marker>
         </Map>
