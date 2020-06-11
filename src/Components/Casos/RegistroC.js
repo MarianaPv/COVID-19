@@ -9,6 +9,7 @@ import "firebase/database";
 import DatePicker from "react-date-picker";
 import "react-datepicker/dist/react-datepicker.css";
 import _ from "lodash";
+import Geocode from "react-geocode";
 
 var firebase = require("firebase/app");
 require("firebase/auth");
@@ -34,6 +35,10 @@ function RegisterBox(props) {
   const [via12, setVia12] = useState("");
   const [via22, setVia22] = useState("");
   const [num2, setNum2] = useState("");
+  const [latHome, setLatHome] = useState(0);
+  const [longHome, setLongHome] = useState(0);
+  const [latWork, setLatWork] = useState(0);
+  const [longWork, setLongWork] = useState(0);
 
   const getAllUsers = () => {
     return app
@@ -43,9 +48,45 @@ function RegisterBox(props) {
         setIdC(snapshot.val().contador);
       });
   };
+  const getHouseCoordinates = (address) => {
+    console.log("Entré");
+    Geocode.fromAddress(address).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(response.status);
+        console.log(lat, lng);
+        if (response.status === "OK") {
+          setLatHome(lat);
+          setLongHome(lng);
+        }
+      },
+      (error) => {
+        console.error(error);
+        alert("Dirección inválida");
+      }
+    );
+  };
+
+  const getWorkCoordinates = (address) => {
+    console.log("Entré");
+    Geocode.fromAddress(address).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        if (response.status === "OK") {
+          setLatWork(lat);
+          setLongWork(lng);
+        }
+      },
+      (error) => {
+        console.error(error);
+        alert("Dirección inválida");
+      }
+    );
+  };
 
   useEffect(() => {
     getAllUsers();
+    Geocode.setApiKey("AIzaSyBXFpz69eQZ_N1SHO37O1e7mMmAlkWIikc");
   }, []);
 
   useEffect(() => {
@@ -99,6 +140,10 @@ function RegisterBox(props) {
       resultadoExamen: examenC,
       fechaExamen: fechaExamenC2,
       id: idC,
+      latHome: latHome,
+      longHome: longHome,
+      latWork: latWork,
+      longWork: longWork,
     };
 
     let messageRef = firebase.database().ref("casos");
@@ -106,7 +151,6 @@ function RegisterBox(props) {
       .database()
       .ref("casos/" + idC)
       .update(resumen);
-    alert("¡Se ha registrado el caso!");
 
     firebase.database().ref("contador/").update(contador);
   };
@@ -205,6 +249,16 @@ function RegisterBox(props) {
           style={{ flexDirection: "column", width: "5vw" }}
           onChange={(e) => setNum(e.target.value)}
         ></input>
+        <button
+          style={{ flexDirection: "column", width: "5vw", marginLeft: "1.3vw" }}
+          onClick={() =>
+            getHouseCoordinates(
+              tipoV + " " + via1 + " " + "#" + via2 + "-" + num
+            )
+          }
+        >
+          Validar
+        </button>
       </div>
 
       <div className="division" style={{ marginBottom: "1vh" }}>
@@ -247,6 +301,21 @@ function RegisterBox(props) {
           style={{ flexDirection: "column", width: "5vw" }}
           onChange={(e) => setNum2(e.target.value)}
         ></input>
+        <button
+          style={{
+            flexDirection: "column",
+            width: "5vw",
+            height: "2vh",
+            marginLeft: "1.3vw",
+          }}
+          onClick={() =>
+            getWorkCoordinates(
+              tipoV2 + " " + via12 + " " + "#" + via22 + "-" + num2
+            )
+          }
+        >
+          Validar
+        </button>
       </div>
 
       <div className="division">

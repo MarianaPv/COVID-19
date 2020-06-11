@@ -21,7 +21,7 @@ function Navigation(props) {
           <div className="navBox">
             <ul className="extra">
               <li>
-                <Link to={ROUTES.HOME}>HOME</Link>
+                <Link to={ROUTES.HOME}>STATS</Link>
               </li>
               <li>
                 <Link to={ROUTES.CASOS}>CASOS</Link>
@@ -31,6 +31,9 @@ function Navigation(props) {
               </li>
               <li>
                 <Link to={ROUTES.BUSQUEDA}>BÚSQUEDA DE CASOS</Link>
+              </li>
+              <li>
+                <Link to={ROUTES.USUARIO}>REGISTRO USUARIO</Link>
               </li>
             </ul>
           </div>

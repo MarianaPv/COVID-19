@@ -13,10 +13,10 @@ import { Map, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import markerCasa from "./home.png";
 import markerTrabajo from "./work.png";
 
-function Mapa() {
+function Mapa(props) {
   const [allData, setAllData] = useState([]);
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
 
   const getAllData = () => {
     return app
@@ -34,21 +34,55 @@ function Mapa() {
 
   useEffect(() => {}, [allData]);
 
-  useEffect(() => {
-    Geocode.setApiKey("AIzaSyBXFpz69eQZ_N1SHO37O1e7mMmAlkWIikc");
+  let allWorkMarkers =
+    props.filteredArray.length > 0 &&
+    props.filteredArray.map((ele) => {
+      return (
+        <Marker
+          position={[ele.latWork, ele.longWork]}
+          icon={L.icon({
+            iconUrl: markerCasa,
+            iconSize: [40, 40],
+          })}
+          onMouseOver={(e) => {
+            e.target.openPopup();
+          }}
+          onMouseOut={(e) => {
+            e.target.closePopup();
+          }}
+        >
+          <Popup>
+            Dirección de trabajo de {ele.nombre + " " + ele.apellido} con cédula{" "}
+            {ele.cedula}
+          </Popup>
+        </Marker>
+      );
+    });
 
-    Geocode.fromAddress("Carrera 42f #90-85").then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat, lng);
-        setLat(lat);
-        setLng(lng);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }, []);
+  let allHouseMarkers =
+    props.filteredArray.length > 0 &&
+    props.filteredArray.map((ele) => {
+      return (
+        <Marker
+          position={[ele.latHome, ele.longHome]}
+          icon={L.icon({
+            iconUrl: markerTrabajo,
+            iconSize: [37, 37],
+          })}
+          onMouseOver={(e) => {
+            e.target.openPopup();
+          }}
+          onMouseOut={(e) => {
+            e.target.closePopup();
+          }}
+        >
+          <Popup>
+            Dirección de residencia de {ele.nombre + " " + ele.apellido} con
+            cédula {ele.cedula}
+          </Popup>
+        </Marker>
+      );
+    });
 
   return (
     <div>
@@ -66,20 +100,8 @@ function Mapa() {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker
-            position={[11.01, -74.85]}
-            icon={L.icon({
-              iconUrl: markerCasa,
-              iconSize: [40, 40],
-            })}
-          ></Marker>
-          <Marker
-            position={[11.02, -74.8015]}
-            icon={L.icon({
-              iconUrl: markerTrabajo,
-              iconSize: [37, 37],
-            })}
-          ></Marker>
+          {allWorkMarkers}
+          {allHouseMarkers}
         </Map>
       </div>
     </div>

@@ -5,3 +5,4 @@ export const REGISTROC = "/registro-casos";
 export const CASOS = "/casos";
 export const MAPA = "/mapa-casos";
 export const BUSQUEDA = "/busqueda-casos";
+export const USUARIO = "/registro-usuarios";

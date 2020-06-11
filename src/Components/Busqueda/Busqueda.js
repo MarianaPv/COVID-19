@@ -143,51 +143,6 @@ export default function Busqueda() {
                 {" "}
                 <div>{ele.resultadoExamen}</div>
                 {}
-                {ele.resultadoExamen !== "Fallecido" && (
-                  <select
-                    onChange={(e) => handleChange(e.target.value, ele.id)}
-                    className="menu2"
-                    style={{
-                      width: "14vw",
-                      display: "flex",
-                      flexDirection: "column",
-                      marginRight: "2vw",
-                    }}
-                  >
-                    <option
-                      value={ele.resultadoExamen}
-                      style={{ color: "grey" }}
-                    >
-                      Seleccione nuevo estado
-                    </option>
-                    <option value="Positivo en casa">Positivo en casa</option>
-                    <option value="Positivo en hospital">
-                      Positivo en hospital
-                    </option>
-                    <option value="Positivo en UCI">Positivo en UCI</option>
-                    <option value="Curado">Curado</option>
-                    <option value="Fallecido">Fallecido</option>
-                  </select>
-                )}
-                {ele.resultadoExamen !== "Fallecido" && (
-                  <button
-                    style={{
-                      height: "4vh",
-                      border: "0",
-                      borderRadius: "5px",
-
-                      background: "#36ad9e",
-                      color: "white",
-                      width: "9vw",
-                      fontFamily: "'Jost', sans-serif",
-                      fontSize: "15px",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => handleUpdate(ele.id)}
-                  >
-                    Actualizar
-                  </button>
-                )}
               </div>
             }
           </td>
@@ -336,7 +291,7 @@ export default function Busqueda() {
           {filterArray}
         </table>
       </div>
-      <MapaBus />
+      <MapaBus filteredArray={temporaryFilter} />
     </div>
   );
 }

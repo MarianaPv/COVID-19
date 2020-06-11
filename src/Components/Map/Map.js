@@ -36,23 +36,126 @@ function Mapa() {
     getAllData();
   }, []);
 
-  useEffect(() => {}, [allData]);
-
-  useEffect(() => {
-    Geocode.setApiKey("AIzaSyBXFpz69eQZ_N1SHO37O1e7mMmAlkWIikc");
-
-    Geocode.fromAddress("Carrera 42f #90-85").then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat, lng);
-        setLat(lat);
-        setLng(lng);
-      },
-      (error) => {
-        console.error(error);
+  let allMarkers =
+    allData.length > 0 &&
+    allData.map((ele, index) => {
+      if (index !== 0) {
+        if (ele.resultadoExamen === "Fallecido") {
+          return (
+            <Marker
+              position={[ele.latHome, ele.longHome]}
+              icon={L.icon({
+                iconUrl: casoRed,
+                iconSize: [40, 40],
+              })}
+              onMouseOver={(e) => {
+                e.target.openPopup();
+              }}
+              onMouseOut={(e) => {
+                e.target.closePopup();
+              }}
+            >
+              {" "}
+              <Popup>
+                Dirección de residencia de {ele.nombre + " " + ele.apellido} con
+                cédula {ele.cedula}
+              </Popup>
+            </Marker>
+          );
+        } else if (
+          ele.resultadoExamen === "Positivo en casa" ||
+          ele.resultadoExamen === "Positivo"
+        ) {
+          return (
+            <Marker
+              position={[ele.latHome, ele.longHome]}
+              icon={L.icon({
+                iconUrl: casoTratamiento,
+                iconSize: [40, 40],
+              })}
+              onMouseOver={(e) => {
+                e.target.openPopup();
+              }}
+              onMouseOut={(e) => {
+                e.target.closePopup();
+              }}
+            >
+              {" "}
+              <Popup>
+                Dirección de residencia de {ele.nombre + " " + ele.apellido} con
+                cédula {ele.cedula}
+              </Popup>
+            </Marker>
+          );
+        } else if (ele.resultadoExamen === "Curado") {
+          return (
+            <Marker
+              position={[ele.latHome, ele.longHome]}
+              icon={L.icon({
+                iconUrl: casoCurado,
+                iconSize: [40, 40],
+              })}
+              onMouseOver={(e) => {
+                e.target.openPopup();
+              }}
+              onMouseOut={(e) => {
+                e.target.closePopup();
+              }}
+            >
+              {" "}
+              <Popup>
+                Dirección de residencia de {ele.nombre + " " + ele.apellido} con
+                cédula {ele.cedula}
+              </Popup>
+            </Marker>
+          );
+        } else if (ele.resultadoExamen == "Positivo en UCI") {
+          return (
+            <Marker
+              position={[ele.latHome, ele.longHome]}
+              icon={L.icon({
+                iconUrl: casoUCI,
+                iconSize: [40, 40],
+              })}
+              onMouseOver={(e) => {
+                e.target.openPopup();
+              }}
+              onMouseOut={(e) => {
+                e.target.closePopup();
+              }}
+            >
+              {" "}
+              <Popup>
+                Dirección de residencia de {ele.nombre + " " + ele.apellido} con
+                cédula {ele.cedula}
+              </Popup>
+            </Marker>
+          );
+        } else if (ele.resultadoExamen === "Negativo") {
+          return (
+            <Marker
+              position={[ele.latHome, ele.longHome]}
+              icon={L.icon({
+                iconUrl: casoNegativo,
+                iconSize: [40, 40],
+              })}
+              onMouseOver={(e) => {
+                e.target.openPopup();
+              }}
+              onMouseOut={(e) => {
+                e.target.closePopup();
+              }}
+            >
+              {" "}
+              <Popup>
+                Dirección de residencia de {ele.nombre + " " + ele.apellido} con
+                cédula {ele.cedula}
+              </Popup>
+            </Marker>
+          );
+        }
       }
-    );
-  }, []);
+    });
 
   return (
     <div>
@@ -71,13 +174,7 @@ function Mapa() {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker
-            position={[11.01, -74.85]}
-            icon={L.icon({
-              iconUrl: casoCurado,
-              iconSize: [40, 40],
-            })}
-          ></Marker>
+          {allMarkers}
         </Map>
       </div>
     </div>

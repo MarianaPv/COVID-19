@@ -4,6 +4,7 @@ import Form from "./Components/HomePage/index";
 import Register from "./Components/Register/Register";
 import Home from "./Components/Home/Home";
 import RegistroC from "./Components/Casos/RegistroC";
+import RegistroU from "./Components/Register/Register";
 import Casos from "./Components/Casos/Main";
 import Mapa from "./Components/Map/Map";
 import Busqueda from "./Components/Busqueda/Busqueda";
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/registro-casos" component={RegistroC} />
           <Route exact path="/mapa-casos" component={Mapa} />
           <Route exact path="/busqueda-casos" component={Busqueda} />
+          <Route exact path="/registro-usuarios" component={RegistroU} />
         </Switch>
       </Router>
     </div>

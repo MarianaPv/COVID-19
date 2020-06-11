@@ -1,139 +1,119 @@
 .bodyb3 {
-    display: flex;
-    justify-content: center; 
-    align-content: center;
-    align-items: center;
-    padding:0;
-    height: 100vh;
-    width:55%;
-    left: 0;
-    float:left;
-    background: url(coronaback.jpg);
-    background-size: cover;
-
-  }
-
- 
-
-.telematica2{
-   
-    flex-direction: column;
-    justify-content: center; 
-    align-content: center;
-    align-items: center;
-    width:100vw;
-    height: 100vh;
-
-}
-.primero2{
-    display: flex;  
-    flex-direction: column;
-    height: 100vh;
-    width: 45%;
-    padding:0;
-    background: white;
-    float: right;
-    opacity: 0.95;
-    
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 0;
+  height: 90vh;
+  width: 55%;
+  left: 0;
+  float: left;
+  background: url(coronaback.jpg);
+  background-size: cover;
 }
 
-.registrarse{
-            
-    display: flex;
-    margin-bottom: 5vh;
-    font-family: 'Jost', sans-serif;
-
-
+.telematica {
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background: #bbd3d1;
+  width: 90vw;
+  height: 50vh;
+}
+.primero2 {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 45%;
+  padding: 2px;
+  background: white;
+  margin-left: 27vw;
+  opacity: 0.95;
 }
 
-    .claseUno2{
-        justify-content: center;               
-        display: flex;
-        font-family: "sans-serif";
-        margin-top: 0vh;
-        margin-bottom: 5vh;
-        font-family: 'Jost', sans-serif;
-        
-    }
-    
+.registrarse {
+  display: flex;
+  margin-bottom: 5vh;
+  font-family: "Jost", sans-serif;
+}
 
-    
-    .MuiInput-root{
-        width: 70%;
-        margin-left: 5vw;
-        
-    }
-    
-    .MuiInput-underline{
-        width: 70%;
-        margin-bottom: 2.8vh;
-        margin-left: 5vw;
-    }
-    
-    .form {
-		width: '50%';
-        margin-top: 15vh;
-        margin-left: 5vh;
-        margin-top: 0vh;
-        height:100%;
+.claseUno2 {
+  justify-content: center;
+  display: flex;
+  font-family: "sans-serif";
+  margin-top: 0vh;
+  margin-bottom: 5vh;
+  font-family: "Jost", sans-serif;
+}
 
-    }
+.MuiInput-root {
+  width: 70%;
+  margin-left: 5vw;
+}
 
-    .options{
-        margin-bottom: 7vh;
-        
-        
-    }
+.MuiInput-underline {
+  width: 70%;
+  margin-bottom: 2.8vh;
+  margin-left: 5vw;
+}
 
-    .menu{
-        width:79%;
-        height: 3.5vh;
-        margin-top: 1vh;
-        font-family: 'Jost', sans-serif;
-        font-size: 16px;
-      
-        
-    }
-	.submit3 {
-        
-        margin-bottom: 2vh;
-        color: white;
-        background: #89beba;
-        width: 70%;
-        height:5vh;
-        border-radius: 8px;
-        margin-left: 10vh;
-        border: none;
-        outline: none;
-        font-family: 'Jost', sans-serif;
-        font-size: 16px;
-      
-    }
+.form {
+  width: "50%";
+  margin-top: 15vh;
+  margin-left: 5vh;
+  margin-top: 0vh;
+  height: 100%;
+}
 
-    .submit3:hover{
-        transition: 0.5s;
-        background-color:#7da5a2;
-        cursor:pointer;
-    }
-    
-	.submit4 {
-        margin-bottom: 1vh;
-        color: white;
-        
-        background:	#2db4aa;
-        width: 70%;
-        height:5vh;
-        border-radius: 8px;
-        margin-left: 10vh;
-        border: none;
-        outline: none;
-        font-family: 'Jost', sans-serif;
-        font-size: 16px;
-      
-    }
-    
-    .submit4:hover{
-        transition: 0.5s;
-        background-color: #29a098;
-        cursor:pointer;
-    }
+.options {
+  margin-bottom: 7vh;
+}
+
+.menu {
+  width: 79%;
+  height: 3.5vh;
+  margin-top: 1vh;
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+}
+.submit3 {
+  margin-bottom: 2vh;
+  color: white;
+  background: #89beba;
+  width: 70%;
+  height: 5vh;
+  border-radius: 8px;
+  margin-left: 10vh;
+  border: none;
+  outline: none;
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+}
+
+.submit3:hover {
+  transition: 0.5s;
+  background-color: #7da5a2;
+  cursor: pointer;
+}
+
+.submit4 {
+  margin-bottom: 1vh;
+  color: white;
+
+  background: #2db4aa;
+  width: 70%;
+  height: 5vh;
+  border-radius: 8px;
+  margin-left: 10vh;
+  border: none;
+  outline: none;
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+}
+
+.submit4:hover {
+  transition: 0.5s;
+  background-color: #29a098;
+  cursor: pointer;
+}

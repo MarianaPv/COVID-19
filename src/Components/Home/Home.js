@@ -27,6 +27,7 @@ function Home(props) {
   var unique = [];
   var date_counter_array = [];
   var [xy, setXy] = useState([]);
+  var ini = [["Dias"], ["Casos"]];
 
   let zip = (a1, a2) => a1.map((x, i) => [x, a2[i]]);
 
@@ -55,9 +56,9 @@ function Home(props) {
     for (var i = 1; i < allCases.length; i++) {
       var casosparcial = Object.values(allCases[i]);
 
-      if (casosparcial[10] == "Positivo") {
+      if (casosparcial[14] != "Negativo" || casosparcial[10] == "Fallecido") {
         contadorP = contadorP + 1;
-      } else if (casosparcial[10] == "Negativo") {
+      } else if (casosparcial[14] == "Negativo") {
         contadorN = contadorN + 1;
       }
     }
@@ -72,6 +73,11 @@ function Home(props) {
       dates.push(casosparcial[6]);
     }
     unique = dates.filter(onlyUnique);
+    unique.sort(function (a, b) {
+      var aa = a.split("/").reverse().join(),
+        bb = b.split("/").reverse().join();
+      return aa < bb ? -1 : aa > bb ? 1 : 0;
+    });
 
     console.log(unique);
     var date_counter_array_aux = new Array(unique.length).fill(0);
@@ -80,11 +86,14 @@ function Home(props) {
       var casosparcial = Object.values(allCases[i]);
 
       for (var j = 0; j < unique.length; j++) {
-        if (casosparcial[10] == "Positivo" && casosparcial[6] == unique[j]) {
+        if (
+          (casosparcial[14] != "Negativo" || casosparcial[10] == "Fallecido") &&
+          casosparcial[6] == unique[j]
+        ) {
           date_counter_array_aux[j] = date_counter_array_aux[j] + 1;
           date_counter_array[j] = date_counter_array_aux[j];
         } else if (
-          casosparcial[10] == "Negativo" &&
+          casosparcial[14] == "Negativo" &&
           casosparcial[6] == unique[j]
         ) {
           date_counter_array[j] = date_counter_array_aux[j];
@@ -137,7 +146,7 @@ function Home(props) {
     <div>
       <Navigation />
       <div className="welcome">
-        Haga clic para observar las estadísticas
+        Haga clic en "Ir" para observar las estadísticas
         <button
           style={{
             height: "4vh",
@@ -168,27 +177,26 @@ function Home(props) {
           data={xy}
           options={{
             title: "Casos Diarios",
-
             hAxis: {
-              title: "Tiempo",
+              title: "Días",
             },
             vAxis: {
-              title: "Población",
+              title: "Casos",
             },
           }}
         />
 
         <Chart
           className="chart2"
-          width={"500px"}
-          height={"300px"}
+          width={"600px"}
+          height={"400px"}
           chartType="PieChart"
           loader={<div>Loading Chart</div>}
           data={[
             ["Casos", "Infectado/Fallecido/Curado"],
-            ["Infectados", positivos],
+            ["Infectados", positivos - fallecido - curado],
             ["Fallecidos", fallecido],
-            ["Curado", curado],
+            ["Curados", curado],
           ]}
           options={{
             title: "Casos Totales Registrados",
@@ -196,38 +204,42 @@ function Home(props) {
           rootProps={{ "data-testid": "1" }}
         />
       </div>
+
       <div style={{ display: "flex" }}>
+        <div className={"Casos N/P"}>
+          <Chart
+            className="chart"
+            width={"600px"}
+            height={"400px"}
+            chartType="PieChart"
+            loader={<div>Loading Chart</div>}
+            data={[
+              ["Casos", "Negativo/Positivo"],
+              ["Casos Positivos", positivos],
+              ["Casos Negativos", negativos],
+            ]}
+            options={{
+              title: "Casos Positivos / Negativos",
+            }}
+            rootProps={{ "data-testid": "1" }}
+          />
+        </div>
+
         <Chart
-          className="chart"
-          width={"500px"}
-          height={"300px"}
+          className="chart2"
+          width={"600px"}
+          height={"400px"}
           chartType="PieChart"
           loader={<div>Loading Chart</div>}
           data={[
             ["Casos", "Infectados"],
-            ["Fallecidos", positivos],
+            ["Fallecidos", fallecido],
             ["Positivo en UCI", UCI],
             ["Positivo en casa", casa],
             ["Positivo en hospital", hospital],
           ]}
           options={{
             title: "Situación Infectados",
-          }}
-          rootProps={{ "data-testid": "1" }}
-        />
-        <Chart
-          className="chart2"
-          width={"500px"}
-          height={"300px"}
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          data={[
-            ["Casos", "Negativo/Positivo"],
-            ["Casos Positivos", positivos],
-            ["Casos Negativos", negativos],
-          ]}
-          options={{
-            title: "Casos Positivos / Negativos",
           }}
           rootProps={{ "data-testid": "1" }}
         />

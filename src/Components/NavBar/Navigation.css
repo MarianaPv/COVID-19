@@ -1,94 +1,85 @@
 .bodyy {
-    margin: 0;
-    padding: 0;
-    font-family: 'Jost', sans-serif;
-    font-size: 18px;
+  margin: 0;
+  padding: 0;
+  font-family: "Jost", sans-serif;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  height: 13vh;
+  width: 100%;
+}
+
+section {
+  position: relative;
+  width: 100vw;
+  height: 13vh;
+  background-position: center center;
+}
+
+header {
+  padding: 0 5vw;
+  margin: 0px;
+  width: 100vw;
+  height: 13vh;
+  box-sizing: border-box;
+  background: #0a4e53;
+  color: #fff;
+  transition: 0.5s;
+}
+
+ul {
+  position: relative;
+  margin-left: 0vw;
+
+  padding: 0;
+  display: flex;
+  float: left;
+  transition: 0.5s;
+  height: 13vh;
+}
+
+ul li {
+  list-style: none;
+}
+
+ul li a {
+  position: relative;
+  display: block;
+  padding: 2vw;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(215, 217, 221);
+  transition: 0.5s;
+  height: 100%;
+}
+ul li a:hover {
+  color: #fff;
+}
+ul li a:hover {
+  background-color: rgb(190, 207, 190);
+  color: #0a4e53;
+}
+
+.logo {
+  height: 13vh;
+  width: 9vw;
+  margin-left: 15vw;
+  padding: 3vh 0vw;
+  display: block;
+}
+
+.logout {
+  height: 13vh;
+  width: 4vw;
+  margin-left: 2vw;
+  padding: 3vh 0vw;
+}
+
+@media (max-width: 769px) {
+  .extra {
+    display: none;
+  }
+  .navBox {
     display: flex;
-    flex-direction: row;
-    height: 13vh;
-    width: 100%;
   }
-  
-  section {
-    position: relative;
-    width: 100vw;
-    height: 13vh;
-    background-position: center center;
-  }
-  
-  header {
-    padding: 0 5vw;
-    margin: 0px;
-    width: 100vw;
-    height: 13vh;
-    box-sizing: border-box;
-    background: #0a4e53;
-    color: #fff;
-    transition: 0.5s;
-  }
-  
-  ul {
-    position: relative;
-    margin-left: 2vw;
-    
-    padding: 0;
-    display: flex;
-    float: left;
-    transition: 0.5s;
-    height: 13vh;
-    
-  }
-  
-  ul li {
-    list-style: none;
-  }
-  
-  ul li a {
-    position: relative;
-    display: block;
-    padding:  2.2vw;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: rgb(215, 217, 221);
-    transition: 0.5s;
-    height: 100%;
-  }
-  ul li a:hover {
-    color: #fff;
-    
-  }
-  ul li a:hover {
-    background-color:rgb(190, 207, 190);
-    color: #0a4e53;
-  }
-
-  .logo {
-    height: 13vh;
-    width: 9vw;
-    margin-left: 25vw;
-    padding: 3vh 0vw;
-    display: block;
-    
-  }
-  
-  .logout {
-    height: 13vh;
-    width: 4vw;
-    margin-left: 2vw;
-    padding: 3vh 0vw;
-    
-    
-  }
-  
-
-  
-  @media (max-width: 769px) {
-
-    .extra {
-      display: none;
-    }
-    .navBox {
-      display: flex;
-    }
-  }
-  
+}
