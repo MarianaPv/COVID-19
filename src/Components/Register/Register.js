@@ -33,6 +33,7 @@ function Register(props) {
           setPassword("");
           setCedula("");
           setRol("");
+
           alert("¡Se ha registrado el usuario!");
         });
     } catch (error) {

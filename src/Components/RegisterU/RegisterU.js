@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, InputLabel } from "@material-ui/core";
 import { Link, withRouter } from "react-router-dom";
 import firebase from "../../firebase";
@@ -7,6 +7,7 @@ import "./Register.css";
 import app from "firebase/app";
 import "firebase/auth";
 import Navigation from "../NavBar/Navigation";
+import _ from "lodash";
 
 function RegisterU(props) {
   const [name, setName] = useState("");
@@ -16,6 +17,8 @@ function RegisterU(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rol, setRol] = useState("");
+  const [allUsers, setAllUsers] = useState([]);
+  const [currentU, setCurrentU] = useState("administrador");
 
   app.auth().onAuthStateChanged((user) => {
     if (!user) {
@@ -23,7 +26,26 @@ function RegisterU(props) {
     }
   });
 
-  const onRegister = (e) => {
+  const verifyUser = () => {
+    let email = app.auth().currentUser.email.split(".")[0];
+    app
+      .database()
+      .ref("/usuarios/" + email)
+      .on("value", (snapshot) => {
+        const allFBData = snapshot.val().rol;
+        setCurrentU(allFBData);
+      });
+  };
+  useEffect(() => {
+    verifyUser();
+  }, []);
+
+  useEffect(() => {
+    if (currentU !== "administrador") {
+      props.history.push("/home");
+    }
+  }, [currentU]);
+  const onRegister = async (e) => {
     e.preventDefault();
 
     try {
@@ -40,6 +62,10 @@ function RegisterU(props) {
           setPassword("");
           setCedula("");
           setRol("");
+          app
+            .auth()
+            .signInWithEmailAndPassword("administrador@gmail.com", "admin1");
+          app.auth().sendPasswordResetEmail(email);
           alert("¡Se ha registrado el usuario!");
         });
     } catch (error) {

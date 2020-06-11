@@ -4,10 +4,18 @@ import "./index.css";
 import * as ROUTES from "../Routes/Routes";
 import React, { useState } from "react";
 import { Input, InputLabel } from "@material-ui/core";
+import app from "firebase/app";
+import "firebase/auth";
 
 function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  app.auth().onAuthStateChanged((user) => {
+    if (user) {
+      props.history.push("/home");
+    }
+  });
 
   return (
     <div className="telematica" style={{ width: "100vw", height: "100vh" }}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import app from "firebase/app";
+import "firebase/auth";
 import { withRouter } from "react-router-dom";
 import Navigation from "../NavBar/Navigation";
 import * as ROUTES from "../Routes/Routes";
@@ -15,6 +16,11 @@ require("firebase/auth");
 require("firebase/database");
 
 function Home(props) {
+  app.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      props.history.push("/");
+    }
+  });
   const [allCases, setAllCases] = useState([]);
   var dates = [];
   const [positivos, setPositivos] = useState([]);

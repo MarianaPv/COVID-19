@@ -39,6 +39,7 @@ export default function Busqueda(props) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [estadoActualizado, setEstadoActualizado] = useState("");
   const [estado, setEstado] = useState("");
+  const [currentU, setCurrentU] = useState("medico");
 
   const [Name, setName] = React.useState();
   const [allCases, setAllCases] = useState([]);
@@ -50,9 +51,24 @@ export default function Busqueda(props) {
       props.history.push("/");
     }
   });
-
+  const verifyUser = () => {
+    let email = app.auth().currentUser.email.split(".")[0];
+    app
+      .database()
+      .ref("/usuarios/" + email)
+      .on("value", (snapshot) => {
+        const allFBData = snapshot.val().rol;
+        setCurrentU(allFBData);
+      });
+  };
+  useEffect(() => {
+    if (currentU !== "medico" && currentU !== "administrador") {
+      props.history.push("/home");
+    }
+  }, [currentU]);
   useEffect(() => {
     getAllCases();
+    verifyUser();
   }, []);
   useEffect(() => {
     console.log(allCases);

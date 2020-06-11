@@ -21,6 +21,7 @@ function Mapa(props) {
   const [allData, setAllData] = useState([]);
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
+  const [currentU, setCurrentU] = useState("medico");
   app.auth().onAuthStateChanged((user) => {
     if (!user) {
       props.history.push("/");
@@ -37,9 +38,26 @@ function Mapa(props) {
       });
   };
 
+  const verifyUser = () => {
+    let email = app.auth().currentUser.email.split(".")[0];
+    app
+      .database()
+      .ref("/usuarios/" + email)
+      .on("value", (snapshot) => {
+        const allFBData = snapshot.val().rol;
+        setCurrentU(allFBData);
+      });
+  };
   useEffect(() => {
     getAllData();
+    verifyUser();
   }, []);
+
+  useEffect(() => {
+    if (currentU !== "medico" && currentU !== "administrador") {
+      props.history.push("/home");
+    }
+  }, [currentU]);
 
   let allMarkers =
     allData.length > 0 &&
