@@ -31,7 +31,7 @@ function App() {
   return firebaseInitialized !== false ? (
     <div>
       <CssBaseline />
-      <Router>
+      <Router basename="COVID-19">
         <Switch>
           <Route exact path="/" component={Form} />
           <Route exact path="/registro" component={Register} />
