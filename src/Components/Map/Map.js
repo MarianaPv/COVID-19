@@ -17,10 +17,15 @@ import casoTratamiento from "./yellow.png";
 import casoNegativo from "./green.png";
 import _ from "lodash";
 
-function Mapa() {
+function Mapa(props) {
   const [allData, setAllData] = useState([]);
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
+  app.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      props.history.push("/");
+    }
+  });
 
   const getAllData = () => {
     return app

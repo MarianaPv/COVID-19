@@ -63,6 +63,11 @@ function SignIn(props) {
           >
             INGRESAR
           </button>
+          <Link to={ROUTES.REGISTRO}>
+            <button type="submit" fullWidth className="submit2">
+              REGISTRARSE{" "}
+            </button>
+          </Link>
         </div>
       </div>
     </div>

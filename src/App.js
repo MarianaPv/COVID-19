@@ -4,7 +4,7 @@ import Form from "./Components/HomePage/index";
 import Register from "./Components/Register/Register";
 import Home from "./Components/Home/Home";
 import RegistroC from "./Components/Casos/RegistroC";
-import RegistroU from "./Components/Register/Register";
+import RegistroU from "./Components/RegisterU/RegisterU";
 import Casos from "./Components/Casos/Main";
 import Mapa from "./Components/Map/Map";
 import Busqueda from "./Components/Busqueda/Busqueda";

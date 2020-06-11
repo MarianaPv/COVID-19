@@ -13,6 +13,11 @@ require("firebase/database");
 
 function Casos(props) {
   const [isRegistroOpen, setIsRegistroOpen] = useState(true);
+  app.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      props.history.push("/");
+    }
+  });
 
   return (
     <div>

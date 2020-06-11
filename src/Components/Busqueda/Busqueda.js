@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Busqueda.css";
 import { makeStyles } from "@material-ui/core/styles";
+import app from "firebase/app";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 const options = ["ID", "Cédula", "Nombre"];
 const consulta = new Map();
 
-export default function Busqueda() {
+export default function Busqueda(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -43,6 +44,12 @@ export default function Busqueda() {
   const [allCases, setAllCases] = useState([]);
   const [temporaryFilter, setTemporaryFilter] = useState([]);
   let data = [];
+
+  app.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      props.history.push("/");
+    }
+  });
 
   useEffect(() => {
     getAllCases();
